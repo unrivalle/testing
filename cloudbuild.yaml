@@ -3,15 +3,17 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'us-central1-docker.pkg.dev/saurav-cicd/gke-repo/quickstart-image', './app1']
   id: 'Build Docker Image'
+  
+#step->gcloud beta artifacts repositories create gke-repo --repository-format=docker --location=us-central1
 
 # Push the image to GCR
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'us-central1-docker.pkg.dev/saurav-cicd/gke-repo/quickstart-image']
   id: 'Push Docker Image to GCR'
   
-# Build the image
+# Build the image  
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-central1-docker.pkg.dev/saurav-cicd/gke-repo/quickstart-image', './app2']
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/saurav-cicd/gke-repo/flask-image', './app2' ]
   id: 'Build Docker Image2'
 
 # Push the image to GCR
