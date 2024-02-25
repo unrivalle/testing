@@ -1,7 +1,13 @@
+# steps:
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['build', '-t', 'us-central1-docker.pkg.dev/saurav-cicd/gke-repo/quickstart-image', './app1' ]
+#   id: 'Build Docker Image'
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-central1-docker.pkg.dev/saurav-cicd/gke-repo/quickstart-image', './app1' ]
-  id: 'Build Docker Image'
+  args: ['build', '-t', 'gcr.io/saurav-cicd/myapp:latest', '-t', 'gcr.io/saurav-cicd/myapp:$COMMIT_SHA', '-t', 'gcr.io/saurav-cicd/myapp:$BUILD_ID', './app1' ]
+  id: 'build-image-myapp'
+  waitFor: ['-']  # The '-' indicates that this step begins immediately.
+
 
 #   # images:
 #   # - 'us-central1-docker.pkg.dev/<your_project_id>/gke-repo/quickstart-image'
