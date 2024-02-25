@@ -1,11 +1,10 @@
-#build the image
+# Build the image
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-central1-docker.pkg.dev/saurav-cicd/gke-repo/quickstart-image', './app1' ]
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/saurav-cicd/gke-repo/quickstart-image', './app1']
   id: 'Build Docker Image'
-#push the image in registry
+
+# Push the image to GCR
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-central1-docker.pkg.dev/saurav-cicd/gke-repo/quickstart-image' ]
-  id: 'Push Docker Image'
-
-
+  args: ['push', 'us-central1-docker.pkg.dev/saurav-cicd/gke-repo/quickstart-image']
+  id: 'Push Docker Image to GCR'
